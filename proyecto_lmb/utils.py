@@ -21,8 +21,8 @@ from sklearn.preprocessing import MinMaxScaler
 pd.options.display.max_columns = None
 import joblib
 
-modelo_kmeans_bateadores = joblib.load("modelos/modelo_kmeans_bateadores.joblib")
-modelo_kmeans_lanzadores = joblib.load("modelos/modelo_kmeans_lanzadores.joblib")
+modelo_kmeans_bateadores = joblib.load("jlazo3010/lmb-dashboard/main/proyecto_lmb/modelos/modelo_kmeans_bateadores.joblib")
+modelo_kmeans_lanzadores = joblib.load("jlazo3010/lmb-dashboard/main/proyecto_lmb/modelos/modelo_kmeans_lanzadores.joblib")
 
 def proceso_total():
     

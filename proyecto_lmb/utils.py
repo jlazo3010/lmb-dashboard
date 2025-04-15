@@ -3,6 +3,22 @@ import numpy as np
 import requests
 from bs4 import BeautifulSoup
 from sklearn.preprocessing import StandardScaler
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.cluster import DBSCAN
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+import re
+import joblib
+import math
+from sklearn.preprocessing import MinMaxScaler
+pd.options.display.max_columns = None
 import joblib
 
 modelo_kmeans_bateadores = joblib.load("modelos/modelo_kmeans_bateadores.joblib")
@@ -10,25 +26,6 @@ modelo_kmeans_lanzadores = joblib.load("modelos/modelo_kmeans_lanzadores.joblib"
 
 def proceso_total():
     
-    
-    print("INICIO")
-    import requests
-    from bs4 import BeautifulSoup
-    import pandas as pd
-    from sklearn.preprocessing import StandardScaler
-    from sklearn.cluster import KMeans
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-    from sklearn.cluster import DBSCAN
-    import numpy as np
-    from sklearn.cluster import KMeans
-    from sklearn.metrics import silhouette_score
-    import re
-    import joblib
-    import math
-    from sklearn.preprocessing import MinMaxScaler
-    pd.options.display.max_columns = None
-    print("Se inicia el proceso de scraping de bateadores")
     # URL de la página de estadísticas
     url = 'https://www.milb.com/es/mexican/stats/games?playerPool=ALL'
 
@@ -189,11 +186,7 @@ def proceso_total():
     mapping = {0: 1, 1: 3}
     salida['Cluster'] = salida['Cluster'].replace(mapping)
 
-    print("Se termina el proceso de scraping de bateadores")
-
     ################################################################################################################ Se generan los datos de los lanzadores
-    print("Se inicia el proceso de scraping de lanzadores")
-
     # URL de la página de estadísticas
     urllanzadores = 'https://www.milb.com/es/mexican/stats/pitching/games?playerPool=ALL'
 
@@ -341,11 +334,7 @@ def proceso_total():
     mapping_lanzadores = {0:2,2:3}
     salida_lanzadores['Cluster'] = salida_lanzadores['Cluster'].replace(mapping_lanzadores)
 
-    print("Se termina el proceso de scraping de lanzadores")
-
     ########################################################################################################################################## Se trabajan los datos y se calcula la probabilidad
-
-    print("Se inicia el proceso de tratamiento de data y calculo de probabilidades de enfrentamientos")
 
     salida = salida.reset_index().rename(columns={'index': 'index_bateador'})
     salida_lanzadores = salida_lanzadores.reset_index().rename(columns={'index': 'index_lanzador'})
@@ -495,16 +484,6 @@ def proceso_total():
 
     Cruces = combinacion[columnas_ele]
 
-    print("Se termina el proceso de tratamiento de data y calculo de probabilidades de enfrentamientos")
-
     # Se escriben las bases del powerBi
 
     return equipo_local, equipo_visitante, bateo_local, bateo_visita, lanzamiento_local, lanzamiento_visita, Cruces
-
-    '''equipo_local.to_excel("/content/drive/MyDrive/LMB/equipo_local.xlsx", index=False)
-    equipo_visitante.to_excel("/content/drive/MyDrive/LMB/equipo_visitante.xlsx", index=False)
-    bateo_local.to_excel("/content/drive/MyDrive/LMB/bateo_local.xlsx", index=False)
-    bateo_visita.to_excel("/content/drive/MyDrive/LMB/bateo_visita.xlsx", index=False)
-    lanzamiento_local.to_excel("/content/drive/MyDrive/LMB/lanzamiento_local.xlsx", index=False)
-    lanzamiento_visita.to_excel("/content/drive/MyDrive/LMB/lanzamiento_visita.xlsx", index=False)
-    Cruces.to_excel("/content/drive/MyDrive/LMB/Cruces.xlsx", index=False)'''

@@ -327,3 +327,4 @@ if st.session_state.datos_cargados:
 
 else:
     st.warning("Haz clic en el botón para cargar los datos.")
+    

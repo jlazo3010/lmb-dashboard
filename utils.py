@@ -71,7 +71,7 @@ def proceso_total():
     salida = salida[salida.iloc[:,1] > 6]
     salida = salida[salida["TBTB"] > 0]
 
-    salida = salida.assign(CXJ=salida["CC"] / salida["TBTB"], HRXJ=salida["HRHR"] / salida["TBTB"],CIXJ=salida["CICI"] / salida["TBTB"],PXJ=salida["PP"] / salida["caret-upcaret-downJcaret-upcaret-downJ"],HXJ=salida["HH"] / salida["TBTB"], TBXJ = salida["TBTB"] / salida["caret-upcaret-downJcaret-upcaret-downJ"])
+    salida = salida.assign(CXJ=salida["CC"] / salida["TBTB"], HRXJ=salida["HRHR"] / salida["TBTB"],CIXJ=salida["CICI"] / salida["TBTB"],PXJ=salida["PP"] / salida["JJ"],HXJ=salida["HH"] / salida["TBTB"], TBXJ = salida["TBTB"] / salida["JJ"])
 
     columnas_bat = salida[["PROPRO","OPSOPS","TBXJ"]]
     columnas_bat.iloc[:, 0:] = columnas_bat.iloc[:, 0:].apply(pd.to_numeric, errors='coerce')

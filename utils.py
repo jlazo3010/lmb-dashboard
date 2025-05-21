@@ -68,6 +68,7 @@ def proceso_total():
     
     if not salida.empty:
                         st.success("✅ Datos encontrados bateo")
+                        salida
     else:
         st.error("No se encontraron datos para ese bateo.")
                         
@@ -83,10 +84,6 @@ def proceso_total():
     salida = salida[salida.iloc[:,1] > 6]
     salida = salida[salida["TBTB"] > 0]
     
-    if not salida.empty:
-                        st.success("✅ Datos encontrados salida")
-    else:
-        st.error("No se encontraron datos para ese salida.")
 
     salida = salida.assign(CXJ=salida["CC"] / salida["TBTB"], HRXJ=salida["HRHR"] / salida["TBTB"],CIXJ=salida["CICI"] / salida["TBTB"],PXJ=salida["PP"] / salida["JJ"],HXJ=salida["HH"] / salida["TBTB"], TBXJ = salida["TBTB"] / salida["JJ"])
 

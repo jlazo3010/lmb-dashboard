@@ -63,6 +63,9 @@ modelo_kmeans_lanzadores = joblib.load("modelos/modelo_kmeans_lanzadores.joblib"
 
 def proceso_total():
     
+    salida = base_bateo()
+    salida_lanzadores = base_pitcheo()
+    
     salida.iloc[:, 1:] = salida.iloc[:, 1:].apply(pd.to_numeric, errors='coerce')
 
     salida = salida[salida.iloc[:,1] > 6]

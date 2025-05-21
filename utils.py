@@ -2,11 +2,8 @@ import pandas as pd
 import numpy as np
 import requests
 from bs4 import BeautifulSoup
-<<<<<<< HEAD
 import boto3
 import io
-=======
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
 from sklearn.preprocessing import StandardScaler
 import requests
 from bs4 import BeautifulSoup
@@ -26,7 +23,6 @@ from sklearn.preprocessing import MinMaxScaler
 pd.options.display.max_columns = None
 import joblib
 
-<<<<<<< HEAD
 AWS_ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 BUCKET_NAME = os.environ['S3_BUCKET']
@@ -61,154 +57,14 @@ def base_pitcheo():
 # Cargar la tabla BIMBOID
 salida_lanzadores = base_pitcheo()
 
-=======
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
 modelo_kmeans_bateadores = joblib.load("modelos/modelo_kmeans_bateadores.joblib")
 modelo_kmeans_lanzadores = joblib.load("modelos/modelo_kmeans_lanzadores.joblib")
 
 def proceso_total():
     
-<<<<<<< HEAD
     salida.iloc[:, 1:] = salida.iloc[:, 1:].apply(pd.to_numeric, errors='coerce')
 
     salida = salida[salida.iloc[:,1] > 6]
-=======
-    # URL de la página de estadísticas
-    url = 'https://www.milb.com/es/mexican/stats/games?playerPool=ALL'
-
-    # Realizar la solicitud GET a la página
-    response = requests.get(url)
-    response.raise_for_status()  # Verificar que la solicitud fue exitosa
-
-    # Analizar el contenido HTML de la página
-    soup = BeautifulSoup(response.text, 'html.parser')
-
-    # Encontrar la tabla principal por su clase y atributo 'aria-label'
-    tabla_principal = soup.find("table", {"class": ["bui-table", "is-desktop-sKqjv9Sb"], "aria-label": "Tabla de Estadísticas"})
-
-    # Extraer las filas de la tabla
-    rows = tabla_principal.find_all("tr")
-
-    # Procesar encabezados correctamente
-    header_row = rows[0]  # Primera fila de la tabla contiene los encabezados
-    headers = [header.text.strip() for header in header_row.find_all("th")]
-
-    lista_jugadores = []
-
-    for i in range(1,26):
-      jugadores = rows[i]
-      jugadores1 = [jugadores1.text.strip() for jugadores1 in jugadores.find_all("th")]
-      lista_jugadores.append(jugadores1[0])
-
-    # Asegurarnos de agregar la columna 'Jugador' manualmente si no está clara
-    if headers[0] != "JUGADORJUGADOR":
-        headers.insert(0, "JUGADORJUGADOR")
-
-    # Procesar filas de datos
-    data = []
-    for row in rows[1:]:  # Omitir la fila de encabezados
-        cells = row.find_all("td")
-        if cells:
-            # Extraer el nombre del jugador
-            jugador = cells[0].text.strip()
-            lista_jugadores.append(jugador)  # Agregar a la lista de nombres
-
-            # Extraer el resto de los datos
-            other_data = [cell.text.strip() for cell in cells[1:]]
-
-            # Agregar el nombre al inicio de la fila de datos
-            data.append([jugador] + other_data)
-
-
-    # Agregar cada nombre al inicio de la fila correspondiente
-    data_con_nombres = [[nombre] + fila for nombre, fila in zip(lista_jugadores, data)]
-
-    salida = pd.DataFrame(data_con_nombres, columns= headers)
-
-    url = 'https://www.milb.com/es/mexican/stats/games?'
-    for i in range(2,17):
-      # URL de la página de estadísticas
-      url1 = url + "page="+str(i)+"&playerPool=ALL"
-
-      # Realizar la solicitud GET a la página
-      response = requests.get(url1)
-      response.raise_for_status()  # Verificar que la solicitud fue exitosa
-
-      # Analizar el contenido HTML de la página
-      soup = BeautifulSoup(response.text, 'html.parser')
-
-      # Encontrar la tabla principal por su clase y atributo 'aria-label'
-      tabla_principal = soup.find("table", {"class": ["bui-table", "is-desktop-sKqjv9Sb"], "aria-label": "Tabla de Estadísticas"})
-
-      # Extraer las filas de la tabla
-      rows = tabla_principal.find_all("tr")
-
-      # Procesar encabezados correctamente
-      header_row = rows[0]  # Primera fila de la tabla contiene los encabezados
-      headers = [header.text.strip() for header in header_row.find_all("th")]
-
-      lista_jugadores = []
-
-      for j in range(1,26):
-        jugadores = rows[j]
-        jugadores1 = [jugadores1.text.strip() for jugadores1 in jugadores.find_all("th")]
-        lista_jugadores.append(jugadores1[0])
-
-      # Asegurarnos de agregar la columna 'Jugador' manualmente si no está clara
-      if headers[0] != "JUGADORJUGADOR":
-          headers.insert(0, "JUGADORJUGADOR")
-
-      # Procesar filas de datos
-      data = []
-      for row in rows[1:]:  # Omitir la fila de encabezados
-          cells = row.find_all("td")
-          if cells:
-              # Extraer el nombre del jugador
-              jugador = cells[0].text.strip()
-              lista_jugadores.append(jugador)  # Agregar a la lista de nombres
-
-              # Extraer el resto de los datos
-              other_data = [cell.text.strip() for cell in cells[1:]]
-
-              # Agregar el nombre al inicio de la fila de datos
-              data.append([jugador] + other_data)
-
-
-      # Agregar cada nombre al inicio de la fila correspondiente
-      data_con_nombres = [[nombre] + fila for nombre, fila in zip(lista_jugadores, data)]
-
-      base = pd.DataFrame(data_con_nombres, columns= headers)
-
-      salida = pd.concat([salida, base], ignore_index=True)
-
-    def limpiar_nombre(nombre):
-        # Eliminar caracteres invisibles y espacios extras
-        nombre = re.sub(r"[\u200b\u200c\u200d]", "", nombre).strip()
-
-        # Eliminar basura al principio/final (números, letras tipo CF, etc.)
-        nombre = re.sub(r"^\d+|[A-Z]{1,3}\d*$", "", nombre)
-
-        # Regex mejorada: permite apellidos con apóstrofe
-        mayus = "A-ZÁÉÍÓÚÑÜ"
-        minus = "a-záéíóúñü"
-        letras = f"{mayus}{minus}'"  # incluye apóstrofes
-
-        # Patrón: Nombre + letra suelta, Apellido repetido (posible apóstrofe)
-        patron = fr"([{mayus}][{minus}]+)[{mayus}]?\s([{letras}]+)\2"
-
-        match = re.search(patron, nombre)
-        if match:
-            return f"{match.group(1)} {match.group(2)}"
-
-        return nombre.strip()
-
-    salida["JUGADORJUGADOR"] = salida["JUGADORJUGADOR"].apply(limpiar_nombre)
-
-    salida.set_index("JUGADORJUGADOR", inplace=True)
-    salida.iloc[:, 1:] = salida.iloc[:, 1:].apply(pd.to_numeric, errors='coerce')
-
-    salida = salida[salida.iloc[:,1] > 11]
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
     salida = salida[salida["TBTB"] > 0]
 
     salida = salida.assign(CXJ=salida["CC"] / salida["TBTB"], HRXJ=salida["HRHR"] / salida["TBTB"],CIXJ=salida["CICI"] / salida["TBTB"],PXJ=salida["PP"] / salida["caret-upcaret-downJcaret-upcaret-downJ"],HXJ=salida["HH"] / salida["TBTB"], TBXJ = salida["TBTB"] / salida["caret-upcaret-downJcaret-upcaret-downJ"])
@@ -235,124 +91,9 @@ def proceso_total():
     salida['Cluster'] = salida['Cluster'].replace(mapping)
 
     ################################################################################################################ Se generan los datos de los lanzadores
-<<<<<<< HEAD
     
     salida_lanzadores.iloc[:, 1:] = salida_lanzadores.iloc[:, 1:].astype(str).apply(pd.to_numeric, errors='coerce')
     salida_lanzadores = salida_lanzadores[salida_lanzadores.iloc[:,4] > 6]
-=======
-    # URL de la página de estadísticas
-    urllanzadores = 'https://www.milb.com/es/mexican/stats/pitching/games?playerPool=ALL'
-
-    # Realizar la solicitud GET a la página
-    response = requests.get(urllanzadores)
-    response.raise_for_status()  # Verificar que la solicitud fue exitosa
-
-    # Analizar el contenido HTML de la página
-    soup = BeautifulSoup(response.text, 'html.parser')
-
-    # Encontrar la tabla principal por su clase y atributo 'aria-label'
-    tabla_principal = soup.find("table", {"class": ["bui-table", "is-desktop-sKqjv9Sb"], "aria-label": "Tabla de Estadísticas"})
-
-    # Extraer las filas de la tabla
-    rows = tabla_principal.find_all("tr")
-
-    # Procesar encabezados correctamente
-    header_row_lanzadores = rows[0]  # Primera fila de la tabla contiene los encabezados
-    headers_lanzadores = [header.text.strip() for header in header_row_lanzadores.find_all("th")]
-
-    lista_jugadores_lanzadores = []
-
-    for i in range(1,26):
-      jugadores_lanzadores = rows[i]
-      jugadores1_lanzadores = [jugadores1_lanzadores.text.strip() for jugadores1_lanzadores in jugadores_lanzadores.find_all("th")]
-      lista_jugadores_lanzadores.append(jugadores1_lanzadores[0])
-
-    # Asegurarnos de agregar la columna 'Jugador' manualmente si no está clara
-    if headers_lanzadores[0] != "JUGADORJUGADOR":
-        headers_lanzadores.insert(0, "JUGADORJUGADOR")
-
-    # Procesar filas de datos
-    data = []
-    for row in rows[1:]:  # Omitir la fila de encabezados
-        cells = row.find_all("td")
-        if cells:
-            # Extraer el nombre del jugador
-            jugador_lanzadores = cells[0].text.strip()
-            lista_jugadores_lanzadores.append(jugador_lanzadores)  # Agregar a la lista de nombres
-
-            # Extraer el resto de los datos
-            other_data = [cell.text.strip() for cell in cells[1:]]
-
-            # Agregar el nombre al inicio de la fila de datos
-            data.append([jugador_lanzadores] + other_data)
-
-
-    # Agregar cada nombre al inicio de la fila correspondiente
-    data_con_nombres_lanzadores = [[nombre] + fila for nombre, fila in zip(lista_jugadores_lanzadores, data)]
-
-    salida_lanzadores = pd.DataFrame(data_con_nombres_lanzadores, columns= headers_lanzadores)
-
-    # URL de la página de estadísticas
-    url = 'https://www.milb.com/es/mexican/stats/pitching/games?'
-
-    for j in range(2,18):
-      # Realizar la solicitud GET a la página
-      urllanzadores2 = url + "page="+str(j)+"&playerPool=ALL"
-      response = requests.get(urllanzadores2)
-      response.raise_for_status()  # Verificar que la solicitud fue exitosa
-
-      # Analizar el contenido HTML de la página
-      soup = BeautifulSoup(response.text, 'html.parser')
-
-      # Encontrar la tabla principal por su clase y atributo 'aria-label'
-      tabla_principal = soup.find("table", {"class": ["bui-table", "is-desktop-sKqjv9Sb"], "aria-label": "Tabla de Estadísticas"})
-
-      # Extraer las filas de la tabla
-      rows2 = tabla_principal.find_all("tr")
-
-      # Procesar encabezados correctamente
-      header_row_lanzadores2 = rows2[0]  # Primera fila de la tabla contiene los encabezados
-      headers_lanzadores2 = [header.text.strip() for header in header_row_lanzadores2.find_all("th")]
-
-      lista_jugadores_lanzadores2 = []
-
-      for i in range(1,26):
-        jugadores_lanzadores2 = rows2[i]
-        jugadores1_lanzadores2 = [jugadores1_lanzadores2.text.strip() for jugadores1_lanzadores2 in jugadores_lanzadores2.find_all("th")]
-        lista_jugadores_lanzadores2.append(jugadores1_lanzadores2[0])
-
-      # Asegurarnos de agregar la columna 'Jugador' manualmente si no está clara
-      if headers_lanzadores2[0] != "JUGADORJUGADOR":
-          headers_lanzadores2.insert(0, "JUGADORJUGADOR")
-
-      # Procesar filas de datos
-      data = []
-      for row in rows2[1:]:  # Omitir la fila de encabezados
-          cells = row.find_all("td")
-          if cells:
-              # Extraer el nombre del jugador
-              jugador_lanzadores2 = cells[0].text.strip()
-              lista_jugadores_lanzadores2.append(jugador_lanzadores2)  # Agregar a la lista de nombres
-
-              # Extraer el resto de los datos
-              other_data = [cell.text.strip() for cell in cells[1:]]
-
-              # Agregar el nombre al inicio de la fila de datos
-              data.append([jugador_lanzadores2] + other_data)
-
-
-    # Agregar cada nombre al inicio de la fila correspondiente
-      data_con_nombres = [[nombre] + fila for nombre, fila in zip(lista_jugadores_lanzadores2, data)]
-
-      base = pd.DataFrame(data_con_nombres, columns= headers_lanzadores2)
-
-      salida_lanzadores = pd.concat([salida_lanzadores, base], ignore_index=True)
-
-    salida_lanzadores["JUGADORJUGADOR"] = salida_lanzadores["JUGADORJUGADOR"].apply(limpiar_nombre)
-    salida_lanzadores.set_index("JUGADORJUGADOR", inplace=True)
-    salida_lanzadores.iloc[:, 1:] = salida_lanzadores.iloc[:, 1:].astype(str).apply(pd.to_numeric, errors='coerce')
-    salida_lanzadores = salida_lanzadores[salida_lanzadores.iloc[:,4] > 11]
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
 
     salida_lanzadores['JGJG'] = pd.to_numeric(salida_lanzadores['JGJG'], errors='coerce')
     salida_lanzadores['JPJP'] = pd.to_numeric(salida_lanzadores['JPJP'], errors='coerce')
@@ -393,27 +134,6 @@ def proceso_total():
     salida = salida.reset_index().rename(columns={'index': 'index_bateador'})
     salida_lanzadores = salida_lanzadores.reset_index().rename(columns={'index': 'index_lanzador'})
 
-<<<<<<< HEAD
-=======
-    claves = pd.DataFrame({
-        'Clave': [
-            'MEX', 'QRO', 'OAX', 'AGS', 'MTY', 'PUE', 'MVA', 'JAL', 'LAG', 'YUC',
-            'LAR', 'TIJ', 'LEO', 'SLT', 'DUR', 'VER', 'TAB', 'CHI', 'CAM', 'TIG'
-        ],
-        'Nombre_equipo': [
-            'Diablos Rojos del Mexico', 'Conspiradores de Queretaro', 'Guerreros de Oaxaca',
-            'Rieleros de Aguascalientes', 'Sultanes de Monterrey', 'Pericos de Puebla',
-            'Acereros de Monclova', 'Mariachis de Guadalajara', 'Algodoneros de Union Laguna',
-            'Leones de Yucatan', 'Tecolotes de los Dos Laredos', 'Toros de Tijuana',
-            'Bravos de Leon', 'Saraperos de Saltillo', 'Generales de Durango',
-            'El Aguila de Veracruz', 'Olmecas de Tabasco', 'Dorados de Chihuahua',
-            'Piratas de Campeche', 'Tigres de Quintana Roo'
-        ]
-    })
-    salida = salida.merge(claves, how='left', left_on='EQUIPOEQUIPO', right_on='Clave')
-    salida_lanzadores = salida_lanzadores.merge(claves, how='left', left_on='EQUIPOEQUIPO', right_on='Clave')
-
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
     """# Se unen las bases"""
 
     # Hacemos el cross join
@@ -458,11 +178,6 @@ def proceso_total():
     equipo_local = pd.DataFrame({
         'Equipo': ['Mexico', 'Queretaro', 'Oaxaca', 'Aguascalientes', 'Monterrey', 'Puebla', 'Monclova', 'Jalisco', 'Laguna', 'Yucatan',
                   'DosLaredos', 'Tijuana', 'Leon', 'Saltillo', 'Durango', 'Veracruz', 'Tabasco', 'Chihuahua', 'Campeche', 'QuintanaRoo'],
-<<<<<<< HEAD
-=======
-        'Clave': ['MEX', 'QRO', 'OAX', 'AGS', 'MTY', 'PUE', 'MVA', 'JAL', 'LAG', 'YUC',
-                  'LAR', 'TIJ', 'LEO', 'SLT', 'DUR', 'VER', 'TAB', 'CHI', 'CAM', 'TIG'],
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
         'Nombre_equipo': ['Diablos Rojos del Mexico', 'Conspiradores de Queretaro', 'Guerreros de Oaxaca', 'Rieleros de Aguascalientes',
                           'Sultanes de Monterrey', 'Pericos de Puebla', 'Acereros de Monclova', 'Mariachis de Guadalajara',
                           'Algodoneros de Union Laguna', 'Leones de Yucatan', 'Tecolotes de los Dos Laredos', 'Toros de Tijuana',
@@ -485,11 +200,6 @@ def proceso_total():
     equipo_visitante = pd.DataFrame({
         'Equipo': ['Mexico', 'Queretaro', 'Oaxaca', 'Aguascalientes', 'Monterrey', 'Puebla', 'Monclova', 'Jalisco', 'Laguna', 'Yucatan',
                   'DosLaredos', 'Tijuana', 'Leon', 'Saltillo', 'Durango', 'Veracruz', 'Tabasco', 'Chihuahua', 'Campeche', 'QuintanaRoo'],
-<<<<<<< HEAD
-=======
-        'Clave': ['MEX', 'QRO', 'OAX', 'AGS', 'MTY', 'PUE', 'MVA', 'JAL', 'LAG', 'YUC',
-                  'LAR', 'TIJ', 'LEO', 'SLT', 'DUR', 'VER', 'TAB', 'CHI', 'CAM', 'TIG'],
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
         'Nombre_equipo': ['Diablos Rojos del Mexico', 'Conspiradores de Queretaro', 'Guerreros de Oaxaca', 'Rieleros de Aguascalientes',
                           'Sultanes de Monterrey', 'Pericos de Puebla', 'Acereros de Monclova', 'Mariachis de Guadalajara',
                           'Algodoneros de Union Laguna', 'Leones de Yucatan', 'Tecolotes de los Dos Laredos', 'Toros de Tijuana',
@@ -511,7 +221,6 @@ def proceso_total():
     
     salida_lanzadores = salida_lanzadores.assign()
 
-<<<<<<< HEAD
     bateo_local = salida[["JUGADORJUGADOR","EQUIPOEQUIPO","CXJ","HXJ","HRXJ","CIXJ","PXJ","PROPRO","OBPOBP",'Cluster']]
     bateo_visita = salida[["JUGADORJUGADOR","EQUIPOEQUIPO","CXJ","HXJ","HRXJ","CIXJ","PXJ","PROPRO","OBPOBP",'Cluster']]
     lanzamiento_local = salida_lanzadores[["JUGADORJUGADOR","EQUIPOEQUIPO","EFEEFE","BBXJ","HRXJ","HXJ","CXJ","PROPRO","WHIPWHIP","Cluster"]]
@@ -519,58 +228,30 @@ def proceso_total():
 
     bateo_local.columns = [
         'Bateador', 'Nombre_equipo', 'Carreras', 'Hits', 'Jonrons',
-=======
-    bateo_local = salida[["JUGADORJUGADOR","EQUIPOEQUIPO","Nombre_equipo","CXJ","HXJ","HRXJ","CIXJ","PXJ","PROPRO","OBPOBP",'Cluster']]
-    bateo_visita = salida[["JUGADORJUGADOR","EQUIPOEQUIPO","Nombre_equipo","CXJ","HXJ","HRXJ","CIXJ","PXJ","PROPRO","OBPOBP",'Cluster']]
-    lanzamiento_local = salida_lanzadores[["JUGADORJUGADOR","EQUIPOEQUIPO","Nombre_equipo","EFEEFE","BBXJ","HRXJ","HXJ","CXJ","PROPRO","WHIPWHIP","Cluster"]]
-    lanzamiento_visita = salida_lanzadores[["JUGADORJUGADOR","EQUIPOEQUIPO","Nombre_equipo","EFEEFE","BBXJ","HRXJ","HXJ","CXJ","PROPRO","WHIPWHIP","Cluster"]]
-
-    bateo_local.columns = [
-        'Bateador', 'Clave', 'Nombre_equipo', 'Carreras', 'Hits', 'Jonrons',
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
         'Carreras.impulsadas', 'Ponches', 'PRO', 'OBP', 'Cluster'
     ]
 
     bateo_visita.columns = [
-<<<<<<< HEAD
         'Bateador', 'Nombre_equipo', 'Carreras', 'Hits', 'Jonrons',
-=======
-        'Bateador', 'Clave', 'Nombre_equipo', 'Carreras', 'Hits', 'Jonrons',
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
         'Carreras.impulsadas', 'Ponches', 'PRO', 'OBP', 'Cluster'
     ]
 
     lanzamiento_local.columns = [
-<<<<<<< HEAD
         'Lanzador','Nombre_equipo', 'EFE', 'BB',
-=======
-        'Lanzador', 'Clave', 'Nombre_equipo', 'EFE', 'BB',
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
         'Jonrons', 'Hits', 'Carreras','PRO','WHIP', 'Cluster'
     ]
 
 
     lanzamiento_visita.columns = [
-<<<<<<< HEAD
         'Lanzador', 'Nombre_equipo', 'EFE', 'BB',
-=======
-        'Lanzador', 'Clave', 'Nombre_equipo', 'EFE', 'BB',
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
         'Jonrons', 'Hits', 'Carreras','PRO','WHIP', 'Cluster'
     ]
 
     columnas_ele = [
-<<<<<<< HEAD
         'JUGADORJUGADOR_x', 'EQUIPOEQUIPO_x', 'Cluster_x',
         'HXJ_x', 'CC_x',
         'PP_x', 'HRHR_x', 'PXJ_x',
         'JUGADORJUGADOR_y', 'EQUIPOEQUIPO_y', 'Cluster_y',
-=======
-        'JUGADORJUGADOR_x', 'EQUIPOEQUIPO_x', 'Nombre_equipo_x', 'Cluster_x',
-        'HXJ_x', 'CC_x',
-        'PP_x', 'HRHR_x', 'PXJ_x',
-        'JUGADORJUGADOR_y', 'EQUIPOEQUIPO_y', 'Nombre_equipo_y', 'Cluster_y',
->>>>>>> 62ae09446747439fa08cf8c5bcc682cbe6dc8c0a
         'PROPRO_lanzadores','Hits_lanzadores','Score1','Proba','Proba_ajustada'
     ]
 

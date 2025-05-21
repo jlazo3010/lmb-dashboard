@@ -90,7 +90,11 @@ def proceso_total():
 
     TBXJ = pd.DataFrame(columnas_bat.iloc[:,2])
     
-    columnas_bat
+    if not columnas_bat.empty:
+                        st.success("✅ Datos encontrados columnas_bat")
+                        columnas_bat
+    else:
+        st.error("No se encontraron datos para ese columnas_bat.")
 
     estandarizar = StandardScaler()
     TBXJ_std = pd.DataFrame(estandarizar.fit_transform(TBXJ), columns=TBXJ.columns, index=TBXJ.index)

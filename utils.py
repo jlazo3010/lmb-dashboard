@@ -67,8 +67,8 @@ def proceso_total():
     salida = base_bateo()
     
     if not salida.empty:
-                        st.success("✅ Datos encontrados bateo")
-                        salida
+        st.success("✅ Datos encontrados bateo")
+        salida
     else:
         st.error("No se encontraron datos para ese bateo.")
                         

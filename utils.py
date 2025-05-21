@@ -82,6 +82,11 @@ def proceso_total():
 
     salida = salida[salida.iloc[:,1] > 6]
     salida = salida[salida["TBTB"] > 0]
+    
+    if not salida.empty:
+                        st.success("✅ Datos encontrados salida")
+    else:
+        st.error("No se encontraron datos para ese salida.")
 
     salida = salida.assign(CXJ=salida["CC"] / salida["TBTB"], HRXJ=salida["HRHR"] / salida["TBTB"],CIXJ=salida["CICI"] / salida["TBTB"],PXJ=salida["PP"] / salida["JJ"],HXJ=salida["HH"] / salida["TBTB"], TBXJ = salida["TBTB"] / salida["JJ"])
 
@@ -89,12 +94,6 @@ def proceso_total():
     columnas_bat.iloc[:, 0:] = columnas_bat.iloc[:, 0:].apply(pd.to_numeric, errors='coerce')
 
     TBXJ = pd.DataFrame(columnas_bat.iloc[:,2])
-    
-    if not columnas_bat.empty:
-                        st.success("✅ Datos encontrados columnas_bat")
-                        columnas_bat
-    else:
-        st.error("No se encontraron datos para ese columnas_bat.")
 
     estandarizar = StandardScaler()
     TBXJ_std = pd.DataFrame(estandarizar.fit_transform(TBXJ), columns=TBXJ.columns, index=TBXJ.index)

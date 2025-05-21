@@ -3,6 +3,7 @@ import numpy as np
 import requests
 from bs4 import BeautifulSoup
 import boto3
+import os
 import io
 from sklearn.preprocessing import StandardScaler
 import requests

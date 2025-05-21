@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import streamlit as st
 import requests
 from bs4 import BeautifulSoup
 import boto3
@@ -64,7 +65,18 @@ modelo_kmeans_lanzadores = joblib.load("modelos/modelo_kmeans_lanzadores.joblib"
 def proceso_total():
     
     salida = base_bateo()
+    
+    if not salida.empty:
+                        st.success("✅ Datos encontrados bateo")
+    else:
+        st.error("No se encontraron datos para ese bateo.")
+                        
     salida_lanzadores = base_pitcheo()
+    
+    if not salida_lanzadores.empty:
+                        st.success("✅ Datos encontrados lanzadores")
+    else:
+        st.error("No se encontraron datos para ese lanzadores.")
     
     salida.iloc[:, 1:] = salida.iloc[:, 1:].apply(pd.to_numeric, errors='coerce')
 

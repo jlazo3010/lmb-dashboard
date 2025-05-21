@@ -89,6 +89,8 @@ def proceso_total():
     columnas_bat.iloc[:, 0:] = columnas_bat.iloc[:, 0:].apply(pd.to_numeric, errors='coerce')
 
     TBXJ = pd.DataFrame(columnas_bat.iloc[:,2])
+    
+    columnas_bat
 
     estandarizar = StandardScaler()
     TBXJ_std = pd.DataFrame(estandarizar.fit_transform(TBXJ), columns=TBXJ.columns, index=TBXJ.index)

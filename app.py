@@ -25,7 +25,7 @@ st.markdown("""
     }
 
     h1, h2, h3, h4, h5, h6, h7 {
-        color: white !important;
+        color: #9e2100 !important;
     }
 
     .stTextInput, .stNumberInput, .stDateInput, .stSelectbox, .stCheckbox {

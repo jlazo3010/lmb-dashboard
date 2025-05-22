@@ -144,6 +144,8 @@ def proceso_total():
 
     # Hacemos el cross join
     combinacion = pd.merge(salida, salida_lanzadores, how='cross')
+    
+    st.dataframe(combinacion)
 
     combinacion = combinacion.assign(
         PROPRO_lanzadores= 1/ combinacion["PROPRO_y"],
@@ -184,11 +186,11 @@ def proceso_total():
     equipo_local = pd.DataFrame({
         'Equipo': ['Mexico', 'Queretaro', 'Oaxaca', 'Aguascalientes', 'Monterrey', 'Puebla', 'Monclova', 'Jalisco', 'Laguna', 'Yucatan',
                   'DosLaredos', 'Tijuana', 'Leon', 'Saltillo', 'Durango', 'Veracruz', 'Tabasco', 'Chihuahua', 'Campeche', 'QuintanaRoo'],
-        'Nombre_equipo': ['Diablos Rojos del Mexico', 'Conspiradores de Queretaro', 'Guerreros de Oaxaca', 'Rieleros de Aguascalientes',
-                          'Sultanes de Monterrey', 'Pericos de Puebla', 'Acereros de Monclova', 'Mariachis de Guadalajara',
-                          'Algodoneros de Union Laguna', 'Leones de Yucatan', 'Tecolotes de los Dos Laredos', 'Toros de Tijuana',
-                          'Bravos de Leon', 'Saraperos de Saltillo', 'Generales de Durango', 'El Aguila de Veracruz',
-                          'Olmecas de Tabasco', 'Dorados de Chihuahua', 'Piratas de Campeche', 'Tigres de Quintana Roo'],
+        'Nombre_equipo': ['Diablos Rojos', 'Conspiradores', 'Guerreros', 'Rieleros',
+                          'Sultanes', 'Pericos', 'Acereros', 'Charros',
+                          'Algodoneros', 'Leones', 'Tecos', 'Toros',
+                          'Bravos', 'Saraperos', 'Caliente', 'El Aguila',
+                          'Olmecas', 'Dorados', 'Piratas', 'Tigres'],
         'CXJ': [7.28, 6.99, 6.31, 5.90, 5.88, 5.52, 5.79, 5.37, 5.69, 5.37,
                 5.62, 5.49, 5.41, 5.52, 5.08, 4.82, 4.70, 4.60, 4.32, 3.76],
         'PXJ': [7.56, 6.88, 7.66, 5.76, 6.73, 7.13, 7.38, 7.50, 7.65, 7.19,
@@ -206,11 +208,11 @@ def proceso_total():
     equipo_visitante = pd.DataFrame({
         'Equipo': ['Mexico', 'Queretaro', 'Oaxaca', 'Aguascalientes', 'Monterrey', 'Puebla', 'Monclova', 'Jalisco', 'Laguna', 'Yucatan',
                   'DosLaredos', 'Tijuana', 'Leon', 'Saltillo', 'Durango', 'Veracruz', 'Tabasco', 'Chihuahua', 'Campeche', 'QuintanaRoo'],
-        'Nombre_equipo': ['Diablos Rojos del Mexico', 'Conspiradores de Queretaro', 'Guerreros de Oaxaca', 'Rieleros de Aguascalientes',
-                          'Sultanes de Monterrey', 'Pericos de Puebla', 'Acereros de Monclova', 'Mariachis de Guadalajara',
-                          'Algodoneros de Union Laguna', 'Leones de Yucatan', 'Tecolotes de los Dos Laredos', 'Toros de Tijuana',
-                          'Bravos de Leon', 'Saraperos de Saltillo', 'Generales de Durango', 'El Aguila de Veracruz',
-                          'Olmecas de Tabasco', 'Dorados de Chihuahua', 'Piratas de Campeche', 'Tigres de Quintana Roo'],
+        'Nombre_equipo': ['Diablos Rojos', 'Conspiradores', 'Guerreros', 'Rieleros',
+                          'Sultanes', 'Pericos', 'Acereros', 'Charros',
+                          'Algodoneros', 'Leones', 'Tecos', 'Toros',
+                          'Bravos', 'Saraperos', 'Caliente', 'El Aguila',
+                          'Olmecas', 'Dorados', 'Piratas', 'Tigres'],
         'CXJ': [7.28, 6.99, 6.31, 5.90, 5.88, 5.52, 5.79, 5.37, 5.69, 5.37,
                 5.62, 5.49, 5.41, 5.52, 5.08, 4.82, 4.70, 4.60, 4.32, 3.76],
         'PXJ': [7.56, 6.88, 7.66, 5.76, 6.73, 7.13, 7.38, 7.50, 7.65, 7.19,

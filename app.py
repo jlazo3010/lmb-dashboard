@@ -73,6 +73,19 @@ st.markdown("""
         padding: 0.5em 1em;
         border: 1px solid #ccc;
     }
+    
+    table {
+        width: 100% !important;
+        background-color: white !important;
+        color: black !important;
+        border-collapse: collapse;
+        border-radius: 10px;
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
     </style>
 """, unsafe_allow_html=True)
 

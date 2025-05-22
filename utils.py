@@ -98,8 +98,8 @@ def proceso_total():
 
     ################################################################################################################ Se generan los datos de los lanzadores
     
-    salida_lanzadores.iloc[:, 1:] = salida_lanzadores.iloc[:, 1:].astype(str).apply(pd.to_numeric, errors='coerce')
-    salida_lanzadores = salida_lanzadores[salida_lanzadores.iloc[:,4] > 6]
+    salida_lanzadores.iloc[:, 2:] = salida_lanzadores.iloc[:, 2:].astype(str).apply(pd.to_numeric, errors='coerce')
+    salida_lanzadores = salida_lanzadores[salida_lanzadores.iloc[:,6] > 3]
     
     st.dataframe(salida_lanzadores)
 

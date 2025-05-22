@@ -68,17 +68,13 @@ def proceso_total():
                         
     salida_lanzadores = base_pitcheo()
     
-    st.dataframe(salida)
+    salida.iloc[:, 2:] = salida.iloc[:, 2:].apply(pd.to_numeric, errors='coerce')
     
     
-    salida.iloc[:, 1:] = salida.iloc[:, 1:].apply(pd.to_numeric, errors='coerce')
-    
-    
-
-    salida = salida[salida.iloc[:,1] > 6]
+    salida = salida[salida.iloc[:,2] > 6]
     salida = salida[salida["TBTB"] > 0]
     
-    
+    st.dataframe(salida)
     
     salida = salida.assign(CXJ=salida["CC"] / salida["TBTB"], HRXJ=salida["HRHR"] / salida["TBTB"],CIXJ=salida["CICI"] / salida["TBTB"],PXJ=salida["PP"] / salida["JJ"],HXJ=salida["HH"] / salida["TBTB"], TBXJ = salida["TBTB"] / salida["JJ"])
 

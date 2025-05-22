@@ -17,37 +17,34 @@ st.markdown("""
         border-radius: 8px;
         padding: 0.5em 1em;
     }
-            
+
     /* Cambiar el fondo del contenedor principal del formulario */
     div[data-testid="stForm"] {
-        background-color: #002b54; /* Color de fondo */
-        padding: 20px;              /* Padding alrededor del formulario */
-        border-radius: 10px;        /* Esquinas redondeadas */
+        background-color: #002b54;
+        padding: 20px;
+        border-radius: 10px;
     }
 
     h1, h2, h3, h4, h5, h6, h7 {
         color: white !important;
     }
-            
-    /* Personalizar los campos del formulario */
-    .stTextInput, .stNumberInput, .stDateInput, .stSelectbox, .stCheckbox{
-        background-color: #0056b1; /* Fondo blanco para los inputs */
-        border: 2px solid #ffffff; /* Borde gris */
-        border-radius: 8px;        /* Esquinas redondeadas */
-        padding: 10px;              /* Padding interno */
+
+    .stTextInput, .stNumberInput, .stDateInput, .stSelectbox, .stCheckbox {
+        background-color: #0056b1;
+        border: 2px solid #ffffff;
+        border-radius: 8px;
+        padding: 10px;
         padding-bottom: 20px;
     }
-            
-    /* Personalizar los campos del formulario */
-    .stCheckbox{
-        background-color: #47a1ff; /* Fondo blanco para los inputs */
-        border: 2px solid #ffffff; /* Borde gris */
-        border-radius: 8px;        /* Esquinas redondeadas */
-        padding: 10px;              /* Padding interno */
+
+    .stCheckbox {
+        background-color: #47a1ff;
+        border: 2px solid #ffffff;
+        border-radius: 8px;
+        padding: 10px;
         padding-bottom: 20px;
     }
-            
-    /* Cambiar color de los labels de los campos a blanco */
+
     label, .stCheckbox > div {
         color: white !important;
         font-weight: bold;
@@ -55,6 +52,24 @@ st.markdown("""
 
     .stMarkdown p {
         color: white;
+    }
+
+    /* ===== NUEVO: Estilo para tablas ===== */
+    .dataframe {
+        background-color: white !important;
+        color: black !important;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    /* ===== NUEVO: Estilo para botones de descarga ===== */
+    div[data-testid="stDownloadButton"] > button {
+        background-color: white !important;
+        color: black !important;
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 0.5em 1em;
+        border: 1px solid #ccc;
     }
     </style>
 """, unsafe_allow_html=True)

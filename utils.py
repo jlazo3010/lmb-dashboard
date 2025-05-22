@@ -73,8 +73,6 @@ def proceso_total():
     salida = salida[salida.iloc[:,2] > 6]
     salida = salida[salida["TBTB"] > 0]
     
-    st.dataframe(salida_lanzadores)
-    
     salida = salida.assign(CXJ=salida["CC"] / salida["TBTB"], HRXJ=salida["HRHR"] / salida["TBTB"],CIXJ=salida["CICI"] / salida["TBTB"],PXJ=salida["PP"] / salida["JJ"],HXJ=salida["HH"] / salida["TBTB"], TBXJ = salida["TBTB"] / salida["JJ"])
 
     columnas_bat = salida[["PROPRO","OPSOPS","TBXJ"]]
@@ -100,8 +98,10 @@ def proceso_total():
 
     ################################################################################################################ Se generan los datos de los lanzadores
     
-    salida_lanzadores.iloc[:, 1:] = salida_lanzadores.iloc[:, 1:].astype(str).apply(pd.to_numeric, errors='coerce')
-    salida_lanzadores = salida_lanzadores[salida_lanzadores.iloc[:,4] > 6]
+    salida_lanzadores.iloc[:, 2:] = salida_lanzadores.iloc[:, 2:].astype(str).apply(pd.to_numeric, errors='coerce')
+    salida_lanzadores = salida_lanzadores[salida_lanzadores.iloc[:,3] > 6]
+    
+    st.dataframe(salida_lanzadores)
 
     salida_lanzadores['JGJG'] = pd.to_numeric(salida_lanzadores['JGJG'], errors='coerce')
     salida_lanzadores['JPJP'] = pd.to_numeric(salida_lanzadores['JPJP'], errors='coerce')

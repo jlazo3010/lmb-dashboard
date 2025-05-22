@@ -29,7 +29,7 @@ st.markdown("""
     }
 
     .stTextInput, .stNumberInput, .stDateInput, .stSelectbox, .stCheckbox {
-        background-color: #0056b1;
+        background-color: #ffd04a;
         border: 2px solid #ffffff;
         border-radius: 8px;
         padding: 10px;

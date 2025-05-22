@@ -100,8 +100,6 @@ def proceso_total():
     
     salida_lanzadores.iloc[:, 2:] = salida_lanzadores.iloc[:, 2:].astype(str).apply(pd.to_numeric, errors='coerce')
     salida_lanzadores = salida_lanzadores[salida_lanzadores.iloc[:,6] > 3]
-    
-    st.dataframe(salida_lanzadores)
 
     salida_lanzadores['JGJG'] = pd.to_numeric(salida_lanzadores['JGJG'], errors='coerce')
     salida_lanzadores['JPJP'] = pd.to_numeric(salida_lanzadores['JPJP'], errors='coerce')

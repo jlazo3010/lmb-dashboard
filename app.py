@@ -18,7 +18,6 @@ st.markdown("""
         padding: 0.5em 1em;
     }
 
-    /* Cambiar el fondo del contenedor principal del formulario */
     div[data-testid="stForm"] {
         background-color: #002b54;
         padding: 20px;
@@ -54,15 +53,18 @@ st.markdown("""
         color: white;
     }
 
-    /* ===== NUEVO: Estilo para tablas ===== */
-    .dataframe {
+    /* === NUEVO: Fondo blanco para tablas en st.dataframe() === */
+    div[data-testid="stDataFrame"] {
         background-color: white !important;
-        color: black !important;
         border-radius: 8px;
         padding: 10px;
     }
 
-    /* ===== NUEVO: Estilo para botones de descarga ===== */
+    div[data-testid="stDataFrame"] iframe {
+        background-color: white !important;
+    }
+
+    /* === NUEVO: Botón de descarga blanco === */
     div[data-testid="stDownloadButton"] > button {
         background-color: white !important;
         color: black !important;

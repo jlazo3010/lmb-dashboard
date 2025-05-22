@@ -25,7 +25,7 @@ st.markdown("""
     }
 
     h1, h2, h3, h4, h5, h6, h7 {
-        color: #9e2100 !important;
+        color: #ffffff !important;
     }
 
     .stTextInput, .stNumberInput, .stDateInput, .stSelectbox, .stCheckbox {
@@ -45,12 +45,12 @@ st.markdown("""
     }
 
     label, .stCheckbox > div {
-        color: #9e2100 !important;
+        color: #ffffff !important;
         font-weight: bold;
     }
 
     .stMarkdown p {
-        color: #9e2100;
+        color: #ffffff;
     }
 
     /* === NUEVO: Fondo blanco para tablas en st.dataframe() === */

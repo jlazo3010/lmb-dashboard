@@ -144,8 +144,6 @@ def proceso_total():
 
     # Hacemos el cross join
     combinacion = pd.merge(salida, salida_lanzadores, how='cross')
-    
-    st.dataframe(combinacion)
 
     combinacion = combinacion.assign(
         PROPRO_lanzadores= 1/ combinacion["PROPRO_y"],
@@ -233,6 +231,8 @@ def proceso_total():
     bateo_visita = salida[["JUGADORJUGADOR","EQUIPOEQUIPO","CXJ","HXJ","HRXJ","CIXJ","PXJ","PROPRO","OBPOBP",'Cluster']]
     lanzamiento_local = salida_lanzadores[["JUGADORJUGADOR","EQUIPOEQUIPO","EFEEFE","BBXJ","HRXJ","HXJ","CXJ","PROPRO","WHIPWHIP","Cluster"]]
     lanzamiento_visita = salida_lanzadores[["JUGADORJUGADOR","EQUIPOEQUIPO","EFEEFE","BBXJ","HRXJ","HXJ","CXJ","PROPRO","WHIPWHIP","Cluster"]]
+
+    st.dataframe(bateo_local)
 
     bateo_local.columns = [
         'Bateador', 'Nombre_equipo', 'Carreras', 'Hits', 'Jonrons',

@@ -162,11 +162,11 @@ if st.session_state.datos_cargados:
 
         st.markdown("#### 👥 Bateadores Locales")
         df_bateadores_local = bateolocal[bateolocal["Bateador"].isin(seleccion_bateadores_local)]
-        st.table(df_bateadores_local, use_container_width=True)
+        st.table(df_bateadores_local)
 
         st.markdown("#### 🎯 Lanzador Local")
         df_lanzador_local = lanzamientolocal[lanzamientolocal["Lanzador"].isin(seleccion_lanzador_local)]
-        st.table(df_lanzador_local, use_container_width=True)
+        st.table(df_lanzador_local)
         
         # Tabla resumen local
         st.markdown("🔎 **Resumen estadístico - Bateadores Locales**")
@@ -175,7 +175,7 @@ if st.session_state.datos_cargados:
         ]
         resumen_bateo_local = df_bateadores_local[columnas_bateadores].apply(pd.to_numeric, errors='coerce').mean().to_frame().T
         resumen_bateo_local.index = [local]
-        st.table(resumen_bateo_local, use_container_width=True)
+        st.table(resumen_bateo_local)
 
         st.markdown("🔎 **Resumen estadístico - Lanzador Local**")
         columnas_lanzadores = [
@@ -183,7 +183,7 @@ if st.session_state.datos_cargados:
         ]
         resumen_pitcheo_local = df_lanzador_local[columnas_lanzadores].apply(pd.to_numeric, errors='coerce').mean().to_frame().T
         resumen_pitcheo_local.index = [local]
-        st.table(resumen_pitcheo_local, use_container_width=True)
+        st.table(resumen_pitcheo_local)
 
         st.markdown("---")
 
@@ -191,22 +191,22 @@ if st.session_state.datos_cargados:
 
         st.markdown("#### 👥 Bateadores Visitantes")
         df_bateadores_visita = bateovisita[bateovisita["Bateador"].isin(seleccion_bateadores_visita)]
-        st.table(df_bateadores_visita, use_container_width=True)
+        st.table(df_bateadores_visita)
 
         st.markdown("#### 🎯 Lanzador Visitante")
         df_lanzador_visita = lanzamientovisita[lanzamientovisita["Lanzador"].isin(seleccion_lanzador_visita)]
-        st.table(df_lanzador_visita, use_container_width=True)
+        st.table(df_lanzador_visita)
         
         # Tabla resumen visitante
         st.markdown("🔎 **Resumen estadístico - Bateadores Visitantes**")
         resumen_bateo_visita = df_bateadores_visita[columnas_bateadores].apply(pd.to_numeric, errors='coerce').mean().to_frame().T
         resumen_bateo_visita.index = [visita]
-        st.table(resumen_bateo_visita, use_container_width=True)
+        st.table(resumen_bateo_visita)
         
         st.markdown("🔎 **Resumen estadístico - Lanzador Visitante**")
         resumen_pitcheo_visita = df_lanzador_visita[columnas_lanzadores].apply(pd.to_numeric, errors='coerce').mean().to_frame().T
         resumen_pitcheo_visita.index = [visita]
-        st.table(resumen_pitcheo_visita, use_container_width=True)
+        st.table(resumen_pitcheo_visita)
         
         st.markdown("---")
         

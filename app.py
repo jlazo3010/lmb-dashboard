@@ -266,8 +266,8 @@ if st.session_state.datos_cargados:
     template="plotly_white",  # Aún sirve para mantener el estilo base
 
     # 👇 Estilo del fondo y texto
-    paper_bgcolor='#002b54',   # Fondo del área fuera del gráfico
-    plot_bgcolor='#002b54',    # Fondo dentro del gráfico
+    paper_bgcolor="#17106b",   # Fondo del área fuera del gráfico
+    plot_bgcolor="#002a51",    # Fondo dentro del gráfico
 
     font=dict(
         color='white',         # Color del texto
@@ -296,7 +296,7 @@ if st.session_state.datos_cargados:
     legend=dict(
         font=dict(color='white', size=14)
     )
-)
+    )
 
     st.plotly_chart(fig_bateo, use_container_width=True)
 

@@ -68,10 +68,12 @@ def proceso_total():
                         
     salida_lanzadores = base_pitcheo()
     
+    st.dataframe(salida)
+    
     
     salida.iloc[:, 1:] = salida.iloc[:, 1:].apply(pd.to_numeric, errors='coerce')
     
-    st.dataframe(salida)
+    
 
     salida = salida[salida.iloc[:,1] > 6]
     salida = salida[salida["TBTB"] > 0]

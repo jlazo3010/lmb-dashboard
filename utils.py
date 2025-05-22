@@ -65,19 +65,20 @@ modelo_kmeans_lanzadores = joblib.load("modelos/modelo_kmeans_lanzadores.joblib"
 def proceso_total():
     
     salida = base_bateo()
-    
-    if not salida.empty:
-        st.success("✅ Datos encontrados bateo")
-        salida
-    else:
-        st.error("No se encontraron datos para ese bateo.")
                         
     salida_lanzadores = base_pitcheo()
     
-    if not salida_lanzadores.empty:
-                        st.success("✅ Datos encontrados lanzadores")
-    else:
-        st.error("No se encontraron datos para ese lanzadores.")
+    st.markdown("---")
+    st.subheader("📊 Registros guardados")
+
+    try:
+        salida = base_bateo()
+        if not salida.empty:
+            st.dataframe(salida)
+        else:
+            st.info("No hay registros guardados todavía.")
+    except Exception as e:
+        st.error(f"❌ Error al cargar la base: {e}")
     
     salida.iloc[:, 1:] = salida.iloc[:, 1:].apply(pd.to_numeric, errors='coerce')
 

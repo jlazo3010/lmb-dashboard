@@ -68,35 +68,13 @@ def proceso_total():
                         
     salida_lanzadores = base_pitcheo()
     
-    st.markdown("---")
-    st.subheader("📊 Registros guardados")
-
-    try:
-        salida = base_bateo()
-        if not salida.empty:
-            st.dataframe(salida)
-        else:
-            st.info("No hay registros guardados todavía.")
-    except Exception as e:
-        st.error(f"❌ Error al cargar la base: {e}")
-        
-    st.markdown("---")
-    st.subheader("📊 Registros guardados")
-
-    try:
-        salida_lanzadores = base_pitcheo()
-        if not salida_lanzadores.empty:
-            st.dataframe(salida_lanzadores)
-        else:
-            st.info("No hay registros guardados todavía.")
-    except Exception as e:
-        st.error(f"❌ Error al cargar la base: {e}")
-    
     
     salida.iloc[:, 1:] = salida.iloc[:, 1:].apply(pd.to_numeric, errors='coerce')
 
     salida = salida[salida.iloc[:,1] > 6]
     salida = salida[salida["TBTB"] > 0]
+    
+    st.dataframe(salida)
     
 
     salida = salida.assign(CXJ=salida["CC"] / salida["TBTB"], HRXJ=salida["HRHR"] / salida["TBTB"],CIXJ=salida["CICI"] / salida["TBTB"],PXJ=salida["PP"] / salida["JJ"],HXJ=salida["HH"] / salida["TBTB"], TBXJ = salida["TBTB"] / salida["JJ"])

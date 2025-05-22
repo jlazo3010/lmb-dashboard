@@ -266,7 +266,7 @@ if st.session_state.datos_cargados:
     template="plotly_white",  # Aún sirve para mantener el estilo base
 
     # 👇 Estilo del fondo y texto
-    paper_bgcolor="#ffd000c6",   # Fondo del área fuera del gráfico
+    paper_bgcolor="#ffd102c5",   # Fondo del área fuera del gráfico
     plot_bgcolor="#fae100",    # Fondo dentro del gráfico
 
     font=dict(
@@ -330,7 +330,7 @@ if st.session_state.datos_cargados:
     template="plotly_white",  # Aún sirve para mantener el estilo base
 
     # 👇 Estilo del fondo y texto
-    paper_bgcolor="#ffd000c6",   # Fondo del área fuera del gráfico
+    paper_bgcolor="#ffd102c5",   # Fondo del área fuera del gráfico
     plot_bgcolor="#fae100",    # Fondo dentro del gráfico
 
     font=dict(

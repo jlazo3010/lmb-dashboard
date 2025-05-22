@@ -5,7 +5,15 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 st.set_page_config(page_title="LMB Dashboard", layout="wide")
-st.title("📊 Dashboard de la Liga Mexicana de Béisbol")
+col1, col2 = st.columns([8, 3])  # Ajusta proporción a tu gusto
+
+with col1:
+    st.title("📊 Dashboard de la Liga Mexicana de Béisbol")
+
+with col2:
+    st.image("qr.jpg", width=150)
+
+st.markdown("---")
 st.markdown("Este tablero muestra estadísticas generadas automáticamente por el modelo de clustering.")
 
 st.markdown("""

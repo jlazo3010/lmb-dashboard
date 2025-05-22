@@ -263,7 +263,7 @@ def proceso_total():
         'PROPRO_lanzadores','Hits_lanzadores','Score1','Proba','Proba_ajustada'
     ]
     
-    st.dataframe(bateo_local)
+    st.dataframe(lanzamiento_visita)
 
     Cruces = combinacion[columnas_ele]
 

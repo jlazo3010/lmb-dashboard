@@ -232,7 +232,7 @@ def proceso_total():
     lanzamiento_local = salida_lanzadores[["JUGADORJUGADOR","EQUIPOEQUIPO","EFEEFE","BBXJ","HRXJ","HXJ","CXJ","PROPRO","WHIPWHIP","Cluster"]]
     lanzamiento_visita = salida_lanzadores[["JUGADORJUGADOR","EQUIPOEQUIPO","EFEEFE","BBXJ","HRXJ","HXJ","CXJ","PROPRO","WHIPWHIP","Cluster"]]
 
-    st.dataframe(bateo_local)
+    
 
     bateo_local.columns = [
         'Bateador', 'Nombre_equipo', 'Carreras', 'Hits', 'Jonrons',
@@ -262,6 +262,8 @@ def proceso_total():
         'JUGADORJUGADOR_y', 'EQUIPOEQUIPO_y', 'Cluster_y',
         'PROPRO_lanzadores','Hits_lanzadores','Score1','Proba','Proba_ajustada'
     ]
+    
+    st.dataframe(bateo_local)
 
     Cruces = combinacion[columnas_ele]
 

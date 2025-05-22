@@ -45,7 +45,7 @@ st.markdown("""
     }
 
     label, .stCheckbox > div {
-        color: white !important;
+        color: #9e2100 !important;
         font-weight: bold;
     }
 

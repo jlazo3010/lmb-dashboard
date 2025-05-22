@@ -70,7 +70,7 @@ def proceso_total():
     
     salida.iloc[:, 2:] = salida.iloc[:, 2:].apply(pd.to_numeric, errors='coerce')
     
-    salida = salida[salida.iloc[:,2] > 6]
+    salida = salida[salida.iloc[:,2] > 0]
     salida = salida[salida["TBTB"] > 0]
     
     salida = salida.assign(CXJ=salida["CC"] / salida["TBTB"], HRXJ=salida["HRHR"] / salida["TBTB"],CIXJ=salida["CICI"] / salida["TBTB"],PXJ=salida["PP"] / salida["JJ"],HXJ=salida["HH"] / salida["TBTB"], TBXJ = salida["TBTB"] / salida["JJ"])
@@ -99,7 +99,7 @@ def proceso_total():
     ################################################################################################################ Se generan los datos de los lanzadores
     
     salida_lanzadores.iloc[:, 2:] = salida_lanzadores.iloc[:, 2:].astype(str).apply(pd.to_numeric, errors='coerce')
-    salida_lanzadores = salida_lanzadores[salida_lanzadores.iloc[:,6] > 3]
+    salida_lanzadores = salida_lanzadores[salida_lanzadores.iloc[:,6] > 0]
 
     salida_lanzadores['JGJG'] = pd.to_numeric(salida_lanzadores['JGJG'], errors='coerce')
     salida_lanzadores['JPJP'] = pd.to_numeric(salida_lanzadores['JPJP'], errors='coerce')
@@ -262,8 +262,6 @@ def proceso_total():
         'JUGADORJUGADOR_y', 'EQUIPOEQUIPO_y', 'Cluster_y',
         'PROPRO_lanzadores','Hits_lanzadores','Score1','Proba','Proba_ajustada'
     ]
-    
-    st.dataframe(lanzamiento_visita)
 
     Cruces = combinacion[columnas_ele]
 

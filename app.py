@@ -11,9 +11,8 @@ with col1:
     st.title("📊 Dashboard de la Liga Mexicana de Béisbol")
 
 with col2:
-    st.image("qr.jpg", width=150)
+    st.image("qr.jpg", width=200)
 
-st.markdown("---")
 st.markdown("Este tablero muestra estadísticas generadas automáticamente por el modelo de clustering.")
 
 st.markdown("""

@@ -81,10 +81,18 @@ st.markdown("""
         border-collapse: collapse;
         border-radius: 10px;
     }
-    th, td {
+
+    th {
+        background-color: black !important;
+        color: white !important;
+        font-weight: bold !important;
+        padding: 10px;
         border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
+    }
+
+    td {
+        padding: 10px;
+        border: 1px solid #ccc;
     }
     </style>
 """, unsafe_allow_html=True)

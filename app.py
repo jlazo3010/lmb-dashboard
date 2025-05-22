@@ -272,8 +272,7 @@ if st.session_state.datos_cargados:
     font=dict(
         color='white',         # Color del texto
         family='Arial',        # Tipo de letra
-        size=14,
-        weight='bold'          # Negritas (esto se simula con font family y tamaño)
+        size=14
     ),
 
     title_font=dict(

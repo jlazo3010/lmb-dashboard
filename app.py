@@ -50,7 +50,7 @@ st.markdown("""
     }
 
     .stMarkdown p {
-        color: white;
+        color: #9e2100;
     }
 
     /* === NUEVO: Fondo blanco para tablas en st.dataframe() === */

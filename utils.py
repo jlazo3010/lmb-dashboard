@@ -79,6 +79,19 @@ def proceso_total():
             st.info("No hay registros guardados todavía.")
     except Exception as e:
         st.error(f"❌ Error al cargar la base: {e}")
+        
+    st.markdown("---")
+    st.subheader("📊 Registros guardados")
+
+    try:
+        salida_lanzadores = base_pitcheo()
+        if not salida_lanzadores.empty:
+            st.dataframe(salida_lanzadores)
+        else:
+            st.info("No hay registros guardados todavía.")
+    except Exception as e:
+        st.error(f"❌ Error al cargar la base: {e}")
+    
     
     salida.iloc[:, 1:] = salida.iloc[:, 1:].apply(pd.to_numeric, errors='coerce')
 

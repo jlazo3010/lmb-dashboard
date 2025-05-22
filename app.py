@@ -259,12 +259,44 @@ if st.session_state.datos_cargados:
     ))
 
     fig_bateo.update_layout(
-        barmode='group',
-        title="Comparativa Bateadores (promedios)",
-        yaxis_title="Valor Promedio",
-        xaxis_title="Estadísticas",
-        template="plotly_white"
+    barmode='group',
+    title="Comparativa Bateadores (promedios)",
+    yaxis_title="Valor Promedio",
+    xaxis_title="Estadísticas",
+    template="plotly_white",  # Aún sirve para mantener el estilo base
+
+    # 👇 Estilo del fondo y texto
+    paper_bgcolor='#002b54',   # Fondo del área fuera del gráfico
+    plot_bgcolor='#002b54',    # Fondo dentro del gráfico
+
+    font=dict(
+        color='white',         # Color del texto
+        family='Arial',        # Tipo de letra
+        size=14,
+        weight='bold'          # Negritas (esto se simula con font family y tamaño)
+    ),
+
+    title_font=dict(
+        color='white',
+        size=20,
+        family='Arial',
+        # No hay weight='bold', pero Plotly usa negrita por defecto en títulos
+    ),
+
+    xaxis=dict(
+        title_font=dict(color='white', size=16),
+        tickfont=dict(color='white', size=14),
+    ),
+
+    yaxis=dict(
+        title_font=dict(color='white', size=16),
+        tickfont=dict(color='white', size=14),
+    ),
+
+    legend=dict(
+        font=dict(color='white', size=14)
     )
+)
 
     st.plotly_chart(fig_bateo, use_container_width=True)
 

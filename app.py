@@ -214,7 +214,7 @@ if st.session_state.datos_cargados:
     fig_bateo.add_trace(go.Bar(
         x=cols_bateo,
         y=[resumen_bateo_local[col].values[0] for col in cols_bateo],
-        name=local,
+        name=local, 
         marker_color='#551B04'
     ))
 

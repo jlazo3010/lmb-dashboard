@@ -330,7 +330,7 @@ if st.session_state.datos_cargados:
         text=f"{PWL:.1%}",
         textposition='inside',
         insidetextanchor='start',
-        textfont=dict(color='white', size=20)
+        textfont=dict(color='white', size=30)
     ))
 
     # Barra del equipo visitante

@@ -215,14 +215,14 @@ if st.session_state.datos_cargados:
         x=cols_bateo,
         y=[resumen_bateo_local[col].values[0] for col in cols_bateo],
         name=local,
-        marker_color='red'
+        marker_color='#3E2C20'
     ))
 
     fig_bateo.add_trace(go.Bar(
         x=cols_bateo,
         y=[resumen_bateo_visita[col].values[0] for col in cols_bateo],
         name=visita,
-        marker_color='blue'
+        marker_color='#878B36'
     ))
 
     fig_bateo.update_layout(
@@ -248,14 +248,13 @@ if st.session_state.datos_cargados:
         x=cols_pitcheo,
         y=[resumen_pitcheo_local[col].values[0] for col in cols_pitcheo],
         name=local,
-        marker_color='red'
+        marker_color='#3E2C20'
     ))
-
     fig_pitcheo.add_trace(go.Bar(
         x=cols_pitcheo,
         y=[resumen_pitcheo_visita[col].values[0] for col in cols_pitcheo],
         name=visita,
-        marker_color='blue'
+        marker_color='#878B36'
     ))
 
     fig_pitcheo.update_layout(
@@ -317,7 +316,7 @@ if st.session_state.datos_cargados:
         x=[PWL],
         name=local,
         orientation='h',
-        marker=dict(color='crimson'),
+        marker=dict(color='#3E2C20'),
         text=f"{PWL:.1%}",
         textposition='inside',
         insidetextanchor='start',
@@ -330,7 +329,7 @@ if st.session_state.datos_cargados:
         x=[PWV],
         name=visita,
         orientation='h',
-        marker=dict(color='royalblue'),
+        marker=dict(color='#878B36'),
         text=f"{PWV:.1%}",
         textposition='inside',
         insidetextanchor='end',
@@ -383,4 +382,3 @@ if st.session_state.datos_cargados:
 
 else:
     st.warning("Haz clic en el botón para cargar los datos.")
-    

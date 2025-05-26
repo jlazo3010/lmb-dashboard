@@ -11,50 +11,54 @@ st.markdown("Este tablero muestra estadísticas generadas automáticamente por e
 st.markdown("""
     <style>
     .stButton>button {
-        background-color: white;
-        color: black;
+        background-color: #A3472F; /* Terracota claro */
+        color: #F4E1A0;            /* Beige cálido */
         font-weight: bold;
         border-radius: 8px;
         padding: 0.5em 1em;
+        border: none;
     }
-            
-    /* Cambiar el fondo del contenedor principal del formulario */
+
+    /* Fondo del formulario */
     div[data-testid="stForm"] {
-        background-color: #002b54; /* Color de fondo */
-        padding: 20px;              /* Padding alrededor del formulario */
-        border-radius: 10px;        /* Esquinas redondeadas */
+        background-color: #6C593C; /* Fondo oliva */
+        padding: 20px;
+        border-radius: 10px;
     }
 
     h1, h2, h3, h4, h5, h6, h7 {
-        color: white !important;
+        color: #F4E1A0 !important; /* Texto beige cálido */
     }
-            
-    /* Personalizar los campos del formulario */
-    .stTextInput, .stNumberInput, .stDateInput, .stSelectbox, .stCheckbox{
-        background-color: #0056b1; /* Fondo blanco para los inputs */
-        border: 2px solid #ffffff; /* Borde gris */
-        border-radius: 8px;        /* Esquinas redondeadas */
-        padding: 10px;              /* Padding interno */
-        padding-bottom: 20px;
+
+    /* Inputs del formulario */
+    .stTextInput, .stNumberInput, .stDateInput, .stSelectbox {
+        background-color: #3E2C20; /* Marrón oscuro */
+        border: 2px solid #F4E1A0;
+        border-radius: 8px;
+        padding: 10px;
+        color: #F4E1A0;
     }
-            
-    /* Personalizar los campos del formulario */
-    .stCheckbox{
-        background-color: #47a1ff; /* Fondo blanco para los inputs */
-        border: 2px solid #ffffff; /* Borde gris */
-        border-radius: 8px;        /* Esquinas redondeadas */
-        padding: 10px;              /* Padding interno */
-        padding-bottom: 20px;
+
+    .stCheckbox {
+        background-color: #878B36; /* Verde maguey */
+        border: 2px solid #F4E1A0;
+        border-radius: 8px;
+        padding: 10px;
+        color: #F4E1A0;
     }
-            
-    /* Cambiar color de los labels de los campos a blanco */
+
     label, .stCheckbox > div {
-        color: white !important;
+        color: #F4E1A0 !important;
         font-weight: bold;
     }
 
     .stMarkdown p {
-        color: white;
+        color: #F4E1A0;
+    }
+
+    /* Fondo general */
+    .main {
+        background-color: #6C593C;
     }
     </style>
 """, unsafe_allow_html=True)

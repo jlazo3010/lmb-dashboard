@@ -5,7 +5,14 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 st.set_page_config(page_title="LMB Dashboard", layout="wide")
-st.title("📊 Dashboard de la Liga Mexicana de Béisbol")
+
+# Encabezado
+col1, col2 = st.columns([5, 3])
+with col1:
+    st.title("📊 Tablero de la Liga Mexicana de Béisbol")
+with col2:
+    st.image("qr.jpg", width=200)
+
 st.markdown("Este tablero muestra estadísticas generadas automáticamente por el modelo de clustering.")
 
 st.markdown("""
@@ -391,4 +398,4 @@ if st.session_state.datos_cargados:
     )
 
 else:
-    st.warning("Haz clic en el botón para cargar los datos.")
+    st.warning("Haz clic en el botón para comenzar.")

@@ -109,6 +109,16 @@ tabla_USU = USUARIOS()
 tabla_USU["Usuario"] = tabla_USU["Usuario"].astype(str)
 tabla_USU["Pass"] = tabla_USU["Pass"].astype(str)
 
+# Estado inicial
+if "pestana_activa" not in st.session_state:
+    st.session_state.pestana_activa = "inicio"
+
+if "autenticado" not in st.session_state:
+    st.session_state['autenticado'] = False
+
+if "usuario_actual" not in st.session_state:
+    st.session_state['usuario_actual'] = ""
+
 # Login
 if not st.session_state['autenticado']:
     st.title("🔒 Inicio de Sesión")

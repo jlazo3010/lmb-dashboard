@@ -11,54 +11,55 @@ st.markdown("Este tablero muestra estadísticas generadas automáticamente por e
 st.markdown("""
     <style>
     .stButton>button {
-        background-color: #A3472F; /* Terracota claro */
-        color: #F4E1A0;            /* Beige cálido */
+        background-color: #878B36; /* Verde maguey */
+        color: #3E2C20;            /* Marrón oscuro */
         font-weight: bold;
         border-radius: 8px;
         padding: 0.5em 1em;
-        border: none;
+        border: 2px solid #3E2C20;
     }
 
     /* Fondo del formulario */
     div[data-testid="stForm"] {
-        background-color: #6C593C; /* Fondo oliva */
+        background-color: #F4E1A0; /* Beige claro */
         padding: 20px;
         border-radius: 10px;
+        border: 2px solid #6C593C;
     }
 
     h1, h2, h3, h4, h5, h6, h7 {
-        color: #F4E1A0 !important; /* Texto beige cálido */
+        color: #3E2C20 !important; /* Marrón oscuro */
     }
 
     /* Inputs del formulario */
     .stTextInput, .stNumberInput, .stDateInput, .stSelectbox {
-        background-color: #3E2C20; /* Marrón oscuro */
-        border: 2px solid #F4E1A0;
+        background-color: #FFF6D6; /* Tonalidad clara artesanal */
+        border: 2px solid #A3472F; /* Terracota para destacar */
         border-radius: 8px;
         padding: 10px;
-        color: #F4E1A0;
+        color: #3E2C20;
     }
 
     .stCheckbox {
-        background-color: #878B36; /* Verde maguey */
-        border: 2px solid #F4E1A0;
+        background-color: #A3472F; /* Fondo terracota */
+        border: 2px solid #3E2C20;
         border-radius: 8px;
         padding: 10px;
         color: #F4E1A0;
     }
 
     label, .stCheckbox > div {
-        color: #F4E1A0 !important;
+        color: #3E2C20 !important;
         font-weight: bold;
     }
 
     .stMarkdown p {
-        color: #F4E1A0;
+        color: #3E2C20;
     }
 
     /* Fondo general */
     .main {
-        background-color: #6C593C;
+        background-color: #F4E1A0;
     }
     </style>
 """, unsafe_allow_html=True)

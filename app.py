@@ -7,7 +7,7 @@ import plotly.express as px
 st.set_page_config(page_title="LMB Dashboard", layout="wide")
 
 # Encabezado
-col1, col2 = st.columns([5, 3])
+col1, col2 = st.columns([8, 3])
 with col1:
     st.title("📊 Tablero de la Liga Mexicana de Béisbol")
 with col2:

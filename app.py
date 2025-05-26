@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import boto3
 import os
+import io
 
 st.set_page_config(page_title="LMB Dashboard", layout="wide")
 

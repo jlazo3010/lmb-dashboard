@@ -13,7 +13,7 @@ col1, col2 = st.columns([10, 3])
 with col1:
     st.title("📊 Tablero de la Liga Mexicana de Béisbol")
 with col2:
-    st.image("qr.jpg", width=200)
+    st.image("qr.jpg", width=200) 
 
 st.markdown("Este tablero muestra estadísticas generadas automáticamente por el modelo de clustering.")
 

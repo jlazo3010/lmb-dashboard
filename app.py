@@ -230,7 +230,12 @@ if st.session_state.datos_cargados:
         title="Comparativa Bateadores (promedios)",
         yaxis_title="Valor Promedio",
         xaxis_title="Estadísticas",
-        template="plotly_white"
+        template="plotly_white",
+        legend=dict(
+            font=dict(
+                size=16  # Puedes ajustar este valor a lo que necesites
+            )
+        )
     )
 
     st.plotly_chart(fig_bateo, use_container_width=True)
@@ -262,7 +267,12 @@ if st.session_state.datos_cargados:
         title="Comparativa Lanzadores (promedios)",
         yaxis_title="Valor Promedio",
         xaxis_title="Estadísticas",
-        template="plotly_white"
+        template="plotly_white",
+        legend=dict(
+            font=dict(
+                size=16  # Puedes ajustar este valor a lo que necesites
+            )
+        )
     )
 
     st.plotly_chart(fig_pitcheo, use_container_width=True)

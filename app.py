@@ -215,7 +215,7 @@ if st.session_state.datos_cargados:
         x=cols_bateo,
         y=[resumen_bateo_local[col].values[0] for col in cols_bateo],
         name=local,
-        marker_color='#3E2C20'
+        marker_color='#551B04'
     ))
 
     fig_bateo.add_trace(go.Bar(
@@ -253,7 +253,7 @@ if st.session_state.datos_cargados:
         x=cols_pitcheo,
         y=[resumen_pitcheo_local[col].values[0] for col in cols_pitcheo],
         name=local,
-        marker_color='#3E2C20'
+        marker_color="#551B04"
     ))
     fig_pitcheo.add_trace(go.Bar(
         x=cols_pitcheo,
@@ -326,7 +326,7 @@ if st.session_state.datos_cargados:
         x=[PWL],
         name=local,
         orientation='h',
-        marker=dict(color='#3E2C20'),
+        marker=dict(color='#551B04'),
         text=f"{PWL:.1%}",
         textposition='inside',
         insidetextanchor='start',

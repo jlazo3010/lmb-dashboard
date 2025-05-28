@@ -74,37 +74,18 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-'''##Base de usuarios
-AWS_ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-BUCKET_NAME = os.environ['S3_BUCKET']
-
-# Verificar que las variables se cargaron correctamente
-if not all([AWS_ACCESS_KEY, AWS_SECRET_KEY, BUCKET_NAME]):
-    print("⚠️ Las variables de entorno no se cargaron correctamente.")
-else:
-    print("✅ Las variables de entorno se cargaron correctamente.")
-
-# Carga del cliente S3
-s3 = boto3.client('s3',
-    aws_access_key_id=AWS_ACCESS_KEY,
-    aws_secret_access_key=AWS_SECRET_KEY
-)'''
-
-USU = 'Usuarios_mez.csv'
+# URL del archivo en GitHub (RAW)
+USUARIOS_URL = "https://raw.githubusercontent.com/jlazo3010/lmb-dashboard/refs/heads/main/Usuarios_mez.csv"
 
 def USUARIOS():
     try:
-        response = s3.get_object(Bucket=BUCKET_NAME, Key=USU)
-        df = pd.read_csv(io.BytesIO(response['Body'].read()), dtype={'Usuario': str, 'Pass' : str})
-    except s3.exceptions.ClientError as e:
-        if e.response['Error']['Code'] == 'NoSuchKey':
-            df = pd.DataFrame(columns=[])
-        else:
-            raise e
+        df = pd.read_csv(USUARIOS_URL, dtype={'Usuario': str, 'Pass': str})
+    except Exception as e:
+        print(f"❌ Error al leer el archivo desde GitHub: {e}")
+        df = pd.DataFrame(columns=['Usuario', 'Pass'])  # columnas mínimas esperadas
     return df
 
-# Cargar la tabla MUNICIPIOS
+# Cargar la tabla USUARIOS
 tabla_USU = USUARIOS()
 tabla_USU["Usuario"] = tabla_USU["Usuario"].astype(str)
 tabla_USU["Pass"] = tabla_USU["Pass"].astype(str)

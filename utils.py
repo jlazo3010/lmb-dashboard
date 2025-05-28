@@ -25,38 +25,20 @@ from sklearn.preprocessing import MinMaxScaler
 pd.options.display.max_columns = None
 import joblib
 
-AWS_ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-BUCKET_NAME = os.environ['S3_BUCKET']
-BATEO = 'base_bateo.csv'
-PITCHEO = 'base_pitcheo.csv'
-
-# Verificar que las variables se cargaron correctamente
-if not all([AWS_ACCESS_KEY, AWS_SECRET_KEY, BUCKET_NAME]):
-    print("⚠️ Las variables de entorno no se cargaron correctamente.")
-else:
-    print("✅ Las variables de entorno se cargaron correctamente.")
-
-# Carga del cliente S3
-s3 = boto3.client('s3',
-    aws_access_key_id=AWS_ACCESS_KEY,
-    aws_secret_access_key=AWS_SECRET_KEY
-)
+# URLs de los archivos en GitHub (versión RAW)
+BATEO_URL = "https://raw.githubusercontent.com/jlazo3010/lmb-dashboard/refs/heads/main/base_bateo.csv"
+PITCHEO_URL = "https://raw.githubusercontent.com/jlazo3010/lmb-dashboard/refs/heads/main/base_pitcheo.csv"
 
 def base_bateo():
-    response = s3.get_object(Bucket=BUCKET_NAME, Key=BATEO)
-    df = pd.read_csv(io.BytesIO(response['Body'].read()))
+    df = pd.read_csv(BATEO_URL)
     return df
-
-# Cargar la tabla BIMBOID
-salida = base_bateo()
 
 def base_pitcheo():
-    response = s3.get_object(Bucket=BUCKET_NAME, Key=PITCHEO)
-    df = pd.read_csv(io.BytesIO(response['Body'].read()))
+    df = pd.read_csv(PITCHEO_URL)
     return df
 
-# Cargar la tabla BIMBOID
+# Cargar las tablas
+salida = base_bateo()
 salida_lanzadores = base_pitcheo()
 
 modelo_kmeans_bateadores = joblib.load("modelos/modelo_kmeans_bateadores.joblib")

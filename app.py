@@ -74,7 +74,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-##Base de usuarios
+'''##Base de usuarios
 AWS_ACCESS_KEY = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 BUCKET_NAME = os.environ['S3_BUCKET']
@@ -89,7 +89,7 @@ else:
 s3 = boto3.client('s3',
     aws_access_key_id=AWS_ACCESS_KEY,
     aws_secret_access_key=AWS_SECRET_KEY
-)
+)'''
 
 USU = 'Usuarios_mez.csv'
 
